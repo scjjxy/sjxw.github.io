@@ -67,6 +67,11 @@
             height: 350px;
             width: 100%;
         }
+        
+        /* 为所有段落添加首行缩进 */
+        p {
+            text-indent: 2em;
+        }
 
         .timeline-item::before {
             content: '';
@@ -148,7 +153,7 @@
             <img src="https://picsum.photos/id/1041/1920/1080" alt="军事背景" class="w-full h-full object-cover">
         </div>
         <div class="container mx-auto px-4 relative z-10">
-            <div class="max-w-4xl mx-auto text-center animate-fade-in">
+            <div class="max-w-6xl mx-auto text-center animate-fade-in">
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-shadow-lg">从“钢铁洪流”到“智胜未来”</h1>
                 <p class="text-xl md:text-2xl text-gray-200 mb-8">九三阅兵透视中国国防现代化十年跃迁</p>
                 <div class="flex justify-center space-x-4">
@@ -167,7 +172,7 @@
     <!-- 主内容区域 -->
     <main class="container mx-auto px-4 py-12">
         <!-- 引言部分 -->
-        <section id="intro" class="max-w-4xl mx-auto mb-20 animate-slide-up">
+        <section id="intro" class="max-w-6xl mx-auto mb-20 animate-slide-up">
             <div class="bg-white rounded-xl shadow-xl p-8 md:p-10">
                 <h2 class="text-3xl font-bold mb-6 text-primary border-l-4 border-accent pl-4">引言：一场阅兵，十年之变</h2>
                 <div class="prose prose-lg max-w-none">
@@ -179,7 +184,7 @@
         </section>
 
         <!-- 装备更新加速 -->
-        <section id="equipment" class="max-w-5xl mx-auto mb-20 scroll-mt-24">
+        <section id="equipment" class="max-w-6xl mx-auto mb-20 scroll-mt-24">
             <div class="bg-white rounded-xl shadow-xl overflow-hidden card-hover">
                 <div class="p-8 md:p-10">
                     <h2 class="text-3xl font-bold mb-6 text-primary border-l-4 border-accent pl-4">一、装备更新加速：新质战斗力成主角</h2>
@@ -201,7 +206,7 @@
         </section>
 
         <!-- 军种结构重塑 -->
-        <section id="services" class="max-w-5xl mx-auto mb-20 scroll-mt-24">
+        <section id="services" class="max-w-6xl mx-auto mb-20 scroll-mt-24">
             <div class="bg-white rounded-xl shadow-xl overflow-hidden card-hover">
                 <div class="p-8 md:p-10">
                     <h2 class="text-3xl font-bold mb-6 text-primary border-l-4 border-accent pl-4">二、军种结构重塑：从陆军主导到多维联合作战</h2>
@@ -277,7 +282,7 @@
         </section>
 
         <!-- 无人方阵进化史 -->
-        <section id="drones" class="max-w-5xl mx-auto mb-20 scroll-mt-24">
+        <section id="drones" class="max-w-6xl mx-auto mb-20 scroll-mt-24">
             <div class="bg-white rounded-xl shadow-xl overflow-hidden card-hover">
                 <div class="p-8 md:p-10">
                     <h2 class="text-3xl font-bold mb-6 text-primary border-l-4 border-accent pl-4">三、“无人方阵”进化史：从配角到体系化作战核心</h2>
@@ -414,7 +419,7 @@
         </section>
 
         <!-- 大国长剑家族谱系 -->
-        <section id="missiles" class="max-w-5xl mx-auto mb-20 scroll-mt-24">
+        <section id="missiles" class="max-w-6xl mx-auto mb-20 scroll-mt-24">
             <div class="bg-white rounded-xl shadow-xl overflow-hidden card-hover">
                 <div class="p-8 md:p-10">
                     <h2 class="text-3xl font-bold mb-6 text-primary border-l-4 border-accent pl-4">四、“大国长剑”家族谱系：火箭军的战略威慑力跃升</h2>
@@ -501,7 +506,7 @@
         </section>
 
         <!-- 结论部分 -->
-        <section id="conclusion" class="max-w-4xl mx-auto mb-20 scroll-mt-24">
+        <section id="conclusion" class="max-w-6xl mx-auto mb-20 scroll-mt-24">
             <div class="bg-gradient-to-r from-primary to-secondary text-white rounded-xl shadow-xl p-8 md:p-10 animate-slide-up">
                 <h2 class="text-3xl font-bold mb-6 border-l-4 border-accent pl-4">结论：从“看得见的钢铁”到“看不见的智能”</h2>
                 <div class="prose prose-lg max-w-none text-gray-100">
@@ -549,7 +554,7 @@
         </section>
 
         <!-- 数据来源 -->
-        <section class="max-w-4xl mx-auto mb-12">
+        <section class="max-w-6xl mx-auto mb-12">
             <div class="bg-gray-50 rounded-xl shadow-md p-6 md:p-8">
                 <h3 class="text-xl font-bold mb-4 text-primary flex items-center">
                     <i class="fa fa-database mr-2 text-accent"></i>
