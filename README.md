@@ -239,12 +239,12 @@
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                        <div class="chart-container">
+                        <div class="chart-container h-[400px]">
                             <canvas id="servicesChart"></canvas>
                         </div>
-                        <div class="bg-gray-50 rounded-lg p-6">
+                        <div class="bg-gray-50 rounded-lg p-6 h-[400px] flex flex-col">
                             <h4 class="font-semibold text-lg mb-4 text-primary">军种结构变化数据表</h4>
-                            <div class="overflow-x-auto">
+                            <div class="overflow-x-auto flex-grow">
                                 <table class="min-w-full divide-y divide-gray-200">
                                     <thead>
                                         <tr>
@@ -451,7 +451,7 @@
                         <p>这种“高低搭配、常核兼备、全域覆盖”的导弹体系，使中国成为全球少数具备完整陆基战略核威慑能力的国家之一。正如《新时代的中国国防》白皮书所强调：“确保在任何情况下都能实施有效核反击。”</p>
                     </div>
                     
-                    <div class="overflow-x-auto mb-8">
+                    <div class="overflow-x-auto mb-8 h-[450px] flex flex-col">
                         <table class="min-w-full divide-y divide-gray-200 shadow-sm">
                             <thead class="bg-primary text-white">
                                 <tr>
@@ -504,7 +504,7 @@
                                     <td class="px-6 py-4 text-sm">二次核反击主力</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-center">2019</td>
                                 </tr>
-                                <tr class="hover:bg-gray-50 transition-colors bg-blue-50">
+                                <tr class="hover:bg-gray-50 transition-colors bg-red-50">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium font-semibold text-accent">（疑似）东风-51</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-center">>15000</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-center">核（多弹头）</td>
@@ -515,11 +515,11 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <div class="bg-gray-50 p-4 rounded-lg text-sm text-gray-600 italic">
                         <p>说明：射程与性能参数综合自《简氏导弹与火箭系统年鉴2025》与中国官方披露信息。东风-51尚未获官方正式命名，但在2025年阅兵中出现一款新型洲际导弹，外形与尺寸明显大于东风-41，学界普遍称为“东风-51”。所有型号均在阅兵中实际展示。</p>
                     </div>
-                    
+
                     <div class="mt-8 chart-container">
                         <canvas id="missileRangeChart"></canvas>
                     </div>
