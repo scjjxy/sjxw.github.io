@@ -110,6 +110,28 @@
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
+
+        /* 隐蔽的编辑入口样式 */
+        .edit-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(15, 52, 96, 0.1);
+            color: rgba(15, 52, 96, 0.5);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .edit-toggle:hover {
+            background-color: rgba(15, 52, 96, 0.8);
+            color: white;
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-sans text-gray-800">
@@ -594,6 +616,11 @@
         </section>
     </main>
 
+    <!-- 编辑切换按钮 -->
+    <button class="edit-toggle" title="切换编辑模式 (Ctrl+E)" id="editToggle">
+        <i class="fa fa-pencil"></i>
+    </button>
+
     <!-- 页脚 -->
     <footer class="bg-dark text-white py-10">
         <div class="container mx-auto px-4">
@@ -955,6 +982,146 @@
         window.addEventListener('load', animateOnScroll);
         // 滚动时执行
         window.addEventListener('scroll', animateOnScroll);
+
+        // 编辑模式切换功能
+        const editToggle = document.getElementById('editToggle');
+        let isEditing = false;
+
+        editToggle.addEventListener('click', () => {
+            isEditing = !isEditing;
+            
+            // 获取所有需要可编辑的元素
+            const editableElements = document.querySelectorAll('p, h1, h2, h3, h4, th, td, li');
+            
+            editableElements.forEach(element => {
+                element.contentEditable = isEditing;
+                if (isEditing) {
+                    element.classList.add('bg-opacity-50');
+                    element.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                } else {
+                    element.classList.remove('bg-opacity-50');
+                    element.style.backgroundColor = '';
+                }
+            });
+
+            // 显示/隐藏表格边框控制面板
+            const tableBorderPanel = document.getElementById('tableBorderPanel');
+            if (tableBorderPanel) {
+                tableBorderPanel.style.display = isEditing ? 'block' : 'none';
+            }
+
+            // 切换按钮样式
+            if (isEditing) {
+                editToggle.innerHTML = '<i class="fa fa-check"></i>';
+                editToggle.style.backgroundColor = 'rgba(233, 69, 96, 0.8)';
+            } else {
+                editToggle.innerHTML = '<i class="fa fa-pencil"></i>';
+                editToggle.style.backgroundColor = 'rgba(15, 52, 96, 0.1)';
+            }
+        });
+
+        // 表格边框调整功能
+        function initTableBorderControls() {
+            // 创建表格边框控制面板
+            const panel = document.createElement('div');
+            panel.id = 'tableBorderPanel';
+            panel.className = 'fixed bottom-8 right-60 bg-white rounded-lg shadow-lg p-4 z-1000 hidden';
+            panel.innerHTML = `
+                <h3 class="text-sm font-bold text-primary mb-2">表格边框编辑</h3>
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-xs text-gray-600 mb-1">边框宽度</label>
+                        <input type="range" id="borderWidth" min="0" max="5" value="1" class="w-full">
+                        <div class="flex justify-between text-xs text-gray-500">
+                            <span>0px</span>
+                            <span id="borderWidthValue">1px</span>
+                            <span>5px</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-600 mb-1">边框颜色</label>
+                        <input type="color" id="borderColor" value="#e2e8f0" class="w-full h-8">
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="flex items-center text-xs">
+                            <input type="checkbox" id="showOuterBorders" checked class="mr-1">
+                            <span>外边框</span>
+                        </label>
+                        <label class="flex items-center text-xs">
+                            <input type="checkbox" id="showInnerBorders" checked class="mr-1">
+                            <span>内边框</span>
+                        </label>
+                    </div>
+                    <button id="resetBorderStyles" class="w-full text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 py-1 px-2 rounded transition-colors">
+                        重置边框
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(panel);
+
+            // 获取控件元素
+            const borderWidth = document.getElementById('borderWidth');
+            const borderColor = document.getElementById('borderColor');
+            const showOuterBorders = document.getElementById('showOuterBorders');
+            const showInnerBorders = document.getElementById('showInnerBorders');
+            const borderWidthValue = document.getElementById('borderWidthValue');
+            const resetBorderStyles = document.getElementById('resetBorderStyles');
+
+            // 应用边框样式
+            function applyBorderStyles() {
+                const tables = document.querySelectorAll('table');
+                const width = `${borderWidth.value}px`;
+                const color = borderColor.value;
+                
+                tables.forEach(table => {
+                    // 设置表格外边框
+                    if (showOuterBorders.checked) {
+                        table.style.border = `${width} solid ${color}`;
+                    } else {
+                        table.style.border = 'none';
+                    }
+                    
+                    // 设置单元格边框
+                    const cells = table.querySelectorAll('th, td');
+                    cells.forEach(cell => {
+                        if (showInnerBorders.checked) {
+                            cell.style.border = `${width} solid ${color}`;
+                        } else {
+                            cell.style.border = 'none';
+                        }
+                    });
+                });
+                
+                // 更新显示值
+                borderWidthValue.textContent = `${borderWidth.value}px`;
+            }
+
+            // 事件监听
+            borderWidth.addEventListener('input', applyBorderStyles);
+            borderColor.addEventListener('input', applyBorderStyles);
+            showOuterBorders.addEventListener('change', applyBorderStyles);
+            showInnerBorders.addEventListener('change', applyBorderStyles);
+
+            // 重置样式
+            resetBorderStyles.addEventListener('click', () => {
+                borderWidth.value = 1;
+                borderColor.value = '#e2e8f0';
+                showOuterBorders.checked = true;
+                showInnerBorders.checked = true;
+                applyBorderStyles();
+            });
+        }
+
+        // 页面加载完成后初始化边框控件
+        window.addEventListener('load', initTableBorderControls);
+
+        // 快捷键支持：Ctrl+E 切换编辑模式
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'e') {
+                e.preventDefault();
+                editToggle.click();
+            }
+        });
     </script>
 </body>
 </html>
